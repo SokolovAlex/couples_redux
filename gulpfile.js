@@ -6,20 +6,20 @@ var gulp = require("gulp"),
     webserver = require('gulp-webserver'),
     babelify = require('babelify');
 
-var watch_src = ['src/js/*.js'];
+var watch_src = ['src/js/*.jsx', 'src/css/*.css'];
 
 gulp.task('clean', () => {
     return rimraf("src/build/**/*.*", { nosort: true, silent: true }, function(){});
 });
 
 gulp.task('js', () => {
-    return browserify('src/js/app.js')
+    return browserify('src/js/app.jsx')
         .transform(babelify, {
             presets: [require('babel-preset-stage-2'), require('babel-preset-es2015'), 'react'],
             plugins: [require('babel-plugin-transform-runtime')]
         })
         .bundle()
-        .pipe(source('app.js'))
+        .pipe(source('app.jsx'))
         .pipe(gulp.dest('src/build'));
 });
 

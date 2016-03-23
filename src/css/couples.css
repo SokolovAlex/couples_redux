@@ -1,0 +1,23 @@
+.couples {
+    width: 766px;
+    height: 766px;
+}
+
+.couples .card {
+    border: 1px solid green;
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+}
+
+.couples .card .forward {
+   display: none;
+}
+
+.couples .card.selected .back {
+    display: none;
+}
+
+.couples .card.selected .forward {
+    display: block;
+}

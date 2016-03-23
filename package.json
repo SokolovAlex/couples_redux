@@ -19,6 +19,7 @@
     "jquery": "^2.2.0",
     "lodash": "^4.6.1",
     "react": "^0.14.7",
+    "react-dom": "^0.14.7",
     "react-redux": "^4.4.1",
     "redux": "^3.3.1",
     "rimraf": "^2.5.2",
