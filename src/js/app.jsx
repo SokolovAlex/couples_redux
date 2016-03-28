@@ -3,18 +3,10 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { couplesGame } from './couplesGame.jsx';
+import reducer from './reducers';
 import Menu from './menu.jsx';
 
-function app(state = {menu: 'home'}, action) {
-    switch (action.type) {
-        case 'menu':
-            state.menu = action.name;
-            break;
-    }
-    return state;
-}
-
-let appStore = createStore(app);
+let appStore = createStore(reducer);
 
 export default class App extends Component {
     render() {

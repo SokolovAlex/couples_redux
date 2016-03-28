@@ -28,7 +28,20 @@ export default class MenuLink extends Component {
 export default class Menu extends Component {
     render() {
         let store = this.props.store;
-        let page = store.getState().menu;
+        let page = store.getState().menu.page;
+
+        if (page !== 'home') {
+            return (
+                <ul className="nav masthead-nav">
+                    <MenuLink
+                        name = "home"
+                        screenName = "Back"
+                        store = {store}
+                        currentPage = {page}
+                    />
+                </ul>);
+        }
+
         return (
             <ul className="nav masthead-nav">
                 <MenuLink

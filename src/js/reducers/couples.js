@@ -3,6 +3,25 @@
  */
 import _ from 'lodash';
 
+const couples = (state = {menu: 'home'}, action) => {
+    switch (action.type) {
+        case 'open_card':
+            if (state.active) {
+                if (state.active.key = action.card.key) {
+
+                    action.card.opened = true;
+                }
+                state.active.open = false;
+                state.active = null;
+            } else {
+                state.active = action.card
+            }
+            return state;
+        default:
+            return state;
+    }
+};
+
 const openCard = (state, action) => {
     switch (action.type) {
         case 'open_card':
@@ -43,4 +62,4 @@ const checkCard = (state, action) => {
     }
 };
 
-export default openCard;
+export default couples;
