@@ -3,13 +3,17 @@
  */
 import {createCards} from "../utils/couplesUtils";
 
-const menu = (state = { page: 'home' }, action) => {
+const menu = (state = { page: 'home', cards: [] }, action) => {
     switch (action.type) {
         case 'menu':
             state.page = action.name;
 
             if (state.page === 'couples') {
-                createCards.bind(this, 2, 2);
+                state.cards = createCards(2, 4);
+
+                debugger;
+            } else {
+
             }
 
             break;

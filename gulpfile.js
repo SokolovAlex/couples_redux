@@ -6,7 +6,7 @@ var gulp = require("gulp"),
     webserver = require('gulp-webserver'),
     babelify = require('babelify');
 
-var watch_src = ['src/js/*.jsx', 'src/css/*.css'];
+var watch_src = ['src/js/*.jsx', 'src/js/*.js', 'src/css/*.css'];
 
 gulp.task('clean', () => {
     return rimraf("src/build/**/*.*", { nosort: true, silent: true }, function(){});
