@@ -10,8 +10,6 @@ const menu = (state = { page: 'home', cards: [] }, action) => {
 
             if (state.page === 'couples') {
                 state.cards = createCards(2, 4);
-
-                debugger;
             } else {
 
             }
