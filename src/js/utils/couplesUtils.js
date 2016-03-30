@@ -1,8 +1,8 @@
 /**
  * Created by sokolov on 29.03.2016.
  */
-// import _ from 'lodash';
-import {imagesCollection} from '../../images/storage';
+import _ from 'lodash';
+import imagesCollection from '../../images/storage.json';
 
 const CoupleCard = (id, key) => {
     return {
@@ -18,8 +18,10 @@ export const createCards = (rows, cols, theme = 'tourism') => {
         return [];
     }
 
-    let images = imagesCollection[theme];
+    let imagesShuffled = _.shuffle(imagesCollection[theme]);
+    
     let halfSize = size / 2;
+    let images = imagesShuffled;
     let array = _.range(halfSize);
     let cards_half = _.map(array, id => new CoupleCard(id, images[id]));
     let cards = _.map(_.range(rows), () => []);
