@@ -7,28 +7,42 @@
     height: 766px;
 }
 
-.couples .card {
-    border: 1px solid white;
+.flipper {
+    position: relative;
     display: inline-block;
+    perspective: 800px;
     width: 150px;
     height: 150px;
+    margin: 0 2px;
 }
 
-.couples .card > * {
+.couples .card {
+    border: 1px solid white;
     width: 150px;
     height: 150px;
-    background-size: cover;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+}
+
+.couples .card figure {
     background-size: 100% 100%;
+    margin: 0;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.couples .card.opened {
+    transform: rotateY( 180deg );
 }
 
 .couples .card .forward {
-    display: none;
+    transform: rotateY( 180deg );
 }
 
-.couples .card.opened .back {
-    display: none;
-}
-
-.couples .card.opened .forward {
-    display: block;
+.couples .card .back {
+    cursor: pointer
 }

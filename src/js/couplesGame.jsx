@@ -2,9 +2,14 @@
  * Created by alexs_000 on 21.03.2016.
  */
 import React, { Component } from 'react';
-import { openCard } from './actions';
+import { openCard, checkAnswer } from './actions';
+
+let lock = false;
 
 export default class CouplesCard extends Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
         let card = this.props.card;
         let theme = this.props.theme;
@@ -24,23 +29,34 @@ export default class CouplesCard extends Component {
             backgroundImage: `url(${imagePath(card.key)})`
         };
 
-        console.log("card!", card);
-
-
         let className = `card ${card.opened ? 'opened' : ''}`;
 
         return (
-            <div className={className} key={card.key} onClick={cardClick}>
-                <div className='back' style={cardBackStyle}>
-                </div>
-                <div className='forward'  style={cardFrontStyle}>
+            <div className="flipper" onClick={cardClick}>
+                <div className={className} key={card.key}>
+                      <figure  className='back' style={cardBackStyle}></figure >
+                      <figure  className='forward'  style={cardFrontStyle}></figure >
                 </div>
             </div>
         );
     }
-    onClick(card, e) {
-        console.log("card", card, e);
+    onClick(card) {
+        if (lock) {
+            return;
+        }
+
         this.store.dispatch(openCard(card));
+
+        let self = this;
+        let state = this.store.getState().couples;
+
+        if (state.questionCard && state.answerCard) {
+            lock = true;
+            setTimeout(()=> {
+                self.store.dispatch(checkAnswer());
+                lock = false;
+            }, 1000);
+        }
     }
 }
 

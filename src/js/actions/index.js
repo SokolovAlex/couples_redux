@@ -28,3 +28,10 @@ export const openCard = (card) => {
         card
     };
 };
+
+export const checkAnswer = () => {
+    return {
+        type: 'check_answer'
+    };
+};
+
