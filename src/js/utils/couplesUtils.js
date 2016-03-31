@@ -20,20 +20,23 @@ export const createCards = (rows, cols, theme = 'tourism') => {
 
     let imagesShuffled = _.shuffle(imagesCollection[theme]);
     
-    let halfSize = size / 2;
-    let images = imagesShuffled;
-    let array = _.range(halfSize);
-    let cards_half = _.map(array, id => new CoupleCard(id, images[id]));
-    let cards = _.map(_.range(rows), () => []);
-    let r = 0, c = 0;
+    let halfSize = size / 2,
+        images = imagesShuffled,
+        array = _.range(halfSize),
+        cards_half = _.map(array, id => new CoupleCard(id, images[id])),
+        cards = _.map(_.range(rows), () => []),
+        r = 0, c = 0,
+        cards_half2 = _.map(cards_half, card => _.clone(card));
 
-    return _.chain(cards_half.concat(cards_half))
+    return _.chain(cards_half.concat(cards_half2))
         .shuffle()
         .reduce((memo, card) => {
             if (c >= cols) {
                 c = 0;
                 r++;
             }
+            card.r = r;
+            card.c = c;
             memo[r].push(card);
             c++;
             return memo;

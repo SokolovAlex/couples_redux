@@ -7,15 +7,18 @@ import {createCards} from "../utils/couplesUtils";
 const couples = (state = {cards: [], theme: "tourism"}, action) => {
     switch (action.type) {
         case 'open_card':
-            if (state.active) {
-                if (state.active.key = action.card.key) {
-                    action.card.opened = true;
-                }
-                state.active.open = false;
-                state.active = null;
-            } else {
-                state.active = action.card;
+
+            console.log("open");
+            console.log(state, action);
+
+            debugger;
+            
+            let card = action.card;
+            let stateCard = state.cards[card.r] && state.cards[card.r][card.c];
+            if (stateCard) {
+                stateCard.opened = !stateCard.opened;
             }
+
             return state;
         case 'menu':
 

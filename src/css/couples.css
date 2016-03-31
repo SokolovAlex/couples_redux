@@ -8,20 +8,27 @@
 }
 
 .couples .card {
-    border: 1px solid green;
+    border: 1px solid white;
     display: inline-block;
     width: 150px;
     height: 150px;
 }
 
-.couples .card .forward {
-   display: none;
+.couples .card > * {
+    width: 150px;
+    height: 150px;
+    background-size: cover;
+    background-size: 100% 100%;
 }
 
-.couples .card.selected .back {
+.couples .card .forward {
     display: none;
 }
 
-.couples .card.selected .forward {
+.couples .card.opened .back {
+    display: none;
+}
+
+.couples .card.opened .forward {
     display: block;
 }

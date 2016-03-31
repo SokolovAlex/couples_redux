@@ -8,6 +8,7 @@ export default class CouplesCard extends Component {
     render() {
         let card = this.props.card;
         let theme = this.props.theme;
+        this.store = this.props.store;
 
         const imagePath = (name) => {
             return `./images/${theme}/${name}.jpg`;
@@ -15,21 +16,31 @@ export default class CouplesCard extends Component {
 
         const cardClick = this.onClick.bind(this, card);
 
-        let background = `background-image: ${imagePath('back')}`;
+        const cardBackStyle = {
+            backgroundImage: `url(${imagePath('back')})`
+        };
+
+        const cardFrontStyle = {
+            backgroundImage: `url(${imagePath(card.key)})`
+        };
+
+        console.log("card!", card);
+
+
+        let className = `card ${card.opened ? 'opened' : ''}`;
 
         return (
-            <div className='card' key={card.key} onClick={cardClick}>
-                <div className='back' style={background}>
+            <div className={className} key={card.key} onClick={cardClick}>
+                <div className='back' style={cardBackStyle}>
                 </div>
-
-                <div className='forward'>
-                    <img alt="" src={imagePath(card.key)} />
+                <div className='forward'  style={cardFrontStyle}>
                 </div>
             </div>
         );
     }
     onClick(card, e) {
         console.log("card", card, e);
+        this.store.dispatch(openCard(card));
     }
 }
 
@@ -46,7 +57,7 @@ export default class CouplesGame extends Component {
         let cardRows = state.couples.cards;
         let theme = state.couples.theme;
         let className = `couples ${theme}`;
-        
+
         return (
             <div className="inner cover">
                 <div className={className}>
@@ -58,6 +69,7 @@ export default class CouplesGame extends Component {
                                         <CouplesCard
                                             card={card}
                                             theme={theme}
+                                            store={store}
                                         />
                                     )
                                 }
